@@ -54,9 +54,8 @@ class App extends React.Component {
 									<Route path="/post" element={<Post />} />
 									<Route index element={<Tag />} />
 									<Route path="/tag" element={<Tag />} />
-									<Route path="/page1" element={<Page1 />}/ >
-										</Route>
-
+									<Route path="/page1" element={<Page1 />} />
+</Route>
 
 
 							</Routes>
