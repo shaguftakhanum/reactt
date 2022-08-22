@@ -1,10 +1,10 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Blog from "./Blog";
-import Post from "./Post";
-import Tag from "./Tag";
-import Page1 from "./Page1";
+import Blog from "./pages/Blog";
+import Post from "./pages/Post";
+import Tag from "./pages/Tag";
+import Page1 from "./pages/Page1";
 
 //switch in react-router-dom is replaced with Routes
 // import {Route,Routes} from "react-router-dom";
@@ -49,13 +49,12 @@ class App extends React.Component {
 					<div>
 						<BrowserRouter>
 							<Routes>
-								<Route index element={<Blog />} />
-								<Route path="/" element={<Blog />}>
+
+								<Route path="/" element={<Blog />}/>
 									<Route path="/post" element={<Post />} />
-									<Route index element={<Tag />} />
 									<Route path="/tag" element={<Tag />} />
 									<Route path="/page1" element={<Page1 />} />
-</Route>
+
 
 
 							</Routes>
