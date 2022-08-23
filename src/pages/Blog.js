@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "../component/Header"
+import Headers from "../components/Headers"
 // import {Outlet} from "react-router-dom"
 const Blog=()=>{
     return(
     <>
-    <Header/>
+    <Headers/>
     {/* <Outlet/> */}
     <h1>this is my first page</h1>
 

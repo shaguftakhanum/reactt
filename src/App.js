@@ -1,10 +1,11 @@
 import React from "react";
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Blog from "./pages/Blog";
-import Post from "./pages/Post";
-import Tag from "./pages/Tag";
-import Page1 from "./pages/Page1";
+import AllRoutes from "./routes/allroutes";
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import Blog from "./pages/Blog";
+// import Post from "./pages/Post";
+// import Tag from "./pages/Tag";
+// import page1 from "./pages/page1";
 
 //switch in react-router-dom is replaced with Routes
 // import {Route,Routes} from "react-router-dom";
@@ -46,14 +47,15 @@ class App extends React.Component {
 			<>
 
 				<div className="container pt-2">
-					<div>
+					<AllRoutes/>
+					{/* <div>
 						<BrowserRouter>
 							<Routes>
 
 								<Route path="/" element={<Blog />}/>
 									<Route path="/post" element={<Post />} />
 									<Route path="/tag" element={<Tag />} />
-									<Route path="/page1" element={<Page1 />} />
+									<Route path="/page1" element={<page1 />} />
 
 
 
@@ -62,7 +64,7 @@ class App extends React.Component {
 
 
 
-					</div>
+					</div> */}
 
 					<table class="table table-striped">
 						<thead>

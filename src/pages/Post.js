@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from "../component/Header"
+import Headers from "../components/Headers"
 const Post = () => {
   return (
     <>
-    <Header/>
+    <Headers/>
     <h1>this is my blog page</h1>
     </>
   )

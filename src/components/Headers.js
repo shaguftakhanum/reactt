@@ -1,6 +1,6 @@
 import React from "react";
 import{NavLink} from "react-router-dom";
-const Header=()=>{
+const Headers=()=>{
     return(
     <>
 
@@ -48,4 +48,4 @@ const Header=()=>{
 </nav>
     </>);
 }
-export default Header;
+export default Headers;
