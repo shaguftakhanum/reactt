@@ -4,11 +4,13 @@ import Blog from "../pages/Blog";
 import Post from "../pages/Post";
 import Tag from "../pages/Tag";
 import Page from '../pages/Page';
+import Create from '../pages/Create';
 const AllRoutes = () => {
   return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Blog />}/>
+				<Route path="/blog/create" element={<Create/>}></Route>
 				<Route path="/post" element={<Post />} />
 				<Route path="/tag" element={<Tag />}/>
 				<Route path="/tag/page1" element={<Page />} />

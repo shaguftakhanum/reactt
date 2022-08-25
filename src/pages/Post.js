@@ -22,7 +22,7 @@ const Post=()=>{
     <Layout>
 
 
-					 <table class="table table-striped">
+					 <table className="table table-striped">
 						<thead>
 							<tr>
 								<th>Id</th>
@@ -48,8 +48,8 @@ const Post=()=>{
 										<td>{item.updatedAt}</td>
 										<td>
 
-											<button type="button" class="btn btn-success">Edit<i class="fas fa-edit"></i></button>
-											<button type="button" class="btn btn-danger">Delete<i class="far fa-trash-alt"></i></button></td>
+											<button type="button" className="btn btn-success">Edit<i className="fas fa-edit"></i></button>
+											<button type="button" className="btn btn-danger">Delete<i className="far fa-trash-alt"></i></button></td>
 									</tr>
 								))
 							}
