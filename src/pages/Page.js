@@ -4,13 +4,7 @@ const Page = () => {
     <>
     <div>this is our heading</div>
 
-			{/* <Routes>
 
-				<Route exact path="/tag/page1" element={<Page />} >
-          </Route>
-
-
-			</Routes> */}
 
     </>
 

@@ -11,11 +11,7 @@ const AllRoutes = () => {
 				<Route path="/" element={<Blog />}/>
 				<Route path="/post" element={<Post />} />
 				<Route path="/tag" element={<Tag />}/>
-
-					<Route path="/tag/page1" element={<Page />} />
-
-
-
+				<Route path="/tag/page1" element={<Page />} />
 			</Routes>
 		</BrowserRouter>
 

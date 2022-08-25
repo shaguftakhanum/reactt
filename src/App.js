@@ -13,59 +13,41 @@ import AllRoutes from "./routes/allroutes";
 // import Contact from "./Contact";
 class App extends React.Component {
 
-	Constructor
-	constructor(props) {
-		super(props);
+	// Constructor
+	// constructor(props) {
+	// 	super(props);
 
-		this.state = {
-			items: [],
-			isItemsLoading: false
-		};
-	}
+	// 	this.state = {
+	// 		items: [],
+	// 		isItemsLoading: false
+	// 	};
+	// }
 
 	// ComponentDidMount is used to
 	// execute the code
 	componentDidMount() {
-		fetch(
-			"http://localhost:8000/api/post/getall")
-			.then((res) => res.json())
-			.then(({ data }) => {
-				// console.log(json);
-				this.setState({
-					items: data,
-					isItemsLoading: true
-				});
-			})
+		// fetch(
+		// 	"http://localhost:8000/api/post/getall")
+		// 	.then((res) => res.json())
+		// 	.then(({ data }) => {
+		// 		// console.log(json);
+		// 		this.setState({
+		// 			items: data,
+		// 			isItemsLoading: true
+		// 		});
+		// 	})
 	}
 	render() {
-		const { isItemsLoading, items } = this.state;
-		if (!isItemsLoading) return <div>
-			<h1> Please wait some time.... </h1> </div>;
+		// const { isItemsLoading, items } = this.state;
+		// if (!isItemsLoading) return <div>
+		// 	<h1> Please wait some time.... </h1> </div>;
 
 		return (
 
 			<>
-
 				<div className="container pt-2">
 					<AllRoutes/>
-					{/* <div>
-						<BrowserRouter>
-							<Routes>
-
-								<Route path="/" element={<Blog />}/>
-									<Route path="/post" element={<Post />} />
-									<Route path="/tag" element={<Tag />} />
-									<Route path="/page1" element={<page1 />} />
-
-
-
-							</Routes>
-						</BrowserRouter>
-
-
-
-					</div> */}
-
+{/*
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -98,7 +80,7 @@ class App extends React.Component {
 								))
 							}
 						</tbody>
-					</table>
+					</table> */}
 				</div>
 			</>
 

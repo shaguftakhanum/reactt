@@ -1,12 +1,64 @@
-import React from 'react'
-import Headers from "../components/Headers"
-const Post = () => {
-  return (
-    <>
-    <Headers/>
-    <h1>this is my blog page</h1>
-    </>
-  )
-}
+import React from "react";
+import {useEffect,useState} from "react";
+import axios from "axios";
+import Layout from "../components/Layout/Layout";
+const Post=()=>{
+    let[items,setitem]=useState([])
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/post/getall')
+        .then(res=>{
+			// console.log('res =>',res);
+			// console.log('data =>',res.data.data)
+			setitem(res.data.data);
+		}).catch(err=>{
+			console.log(err)
+		})
 
-export default Post
+        }, []);
+
+
+    return(
+        <>
+    <Layout>
+
+
+					 <table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Blog_Id</th>
+								<th>Name</th>
+								<th>CreatedAt</th>
+								<th>UpdatedAt</th>
+								<th>Actions</th>
+
+
+
+							</tr>
+						</thead>
+						<tbody>
+							{
+								items.map((item) => (
+
+									<tr>
+										<td>{item.id}</td>
+										<td>{item.blog_id}</td>
+										<td>{item.name}</td>
+										<td>{item.createdAt}</td>
+										<td>{item.updatedAt}</td>
+										<td>
+
+											<button type="button" class="btn btn-success">Edit<i class="fas fa-edit"></i></button>
+											<button type="button" class="btn btn-danger">Delete<i class="far fa-trash-alt"></i></button></td>
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
+
+    </Layout>
+    </>
+    );
+
+}
+export default Post;
