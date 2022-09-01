@@ -28,6 +28,8 @@ const Blog=()=>{
 							<tr>
 								<th>Id</th>
 								<th>Name</th>
+								<th>Type</th>
+								<th>Type_id</th>
 								<th>CreatedAt</th>
 								<th>UpdatedAt</th>
 								<th>Actions</th>
@@ -43,6 +45,8 @@ const Blog=()=>{
 									<tr>
 										<td>{item.id}</td>
 										<td>{item.name}</td>
+										<td>{item.type}</td>
+										<td>{item.type_id}</td>
 										<td>{item.createdAt}</td>
 										<td>{item.updatedAt}</td>
 										<td>
@@ -55,7 +59,7 @@ const Blog=()=>{
 						</tbody>
 					</table>
 					<Link to="/blog/create" element="<Create/>" >
-					<h1>Create Fetch Api</h1>
+					<h1>post request</h1>
 					</Link>
 
     </Layout>
