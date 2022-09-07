@@ -60,9 +60,7 @@ const Blog = () => {
 						}
 					</tbody>
 				</table>
-				<Link to="/blog/create" element="<Create/>" >
-					<h1>post request</h1>
-				</Link>
+
 
 			</Layout>
 		</>
