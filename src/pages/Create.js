@@ -7,28 +7,34 @@ class Create extends Component {
         this.state = {
             images: [],
             name: "",
-            fileContent :1
+            count: [1]
+
         }
     }
 
-     addmore = () => {
-        // let newfield = { images: [] }
-        // this.setState(...this.state, newfield)
+
+    addMore = (e) => {
+        e.preventDefault();
+        this.setState({
+            count: [...this.state.count, '1']
+        })
+
     }
-    handlechange=(e)=>{
-        let name=e.target.value;
+    handlechange = (e) => {
+        let name = e.target.value;
         this.setState({
             ...this.state,
-            name:name
+            name: name
         });
     }
-
     handlefile(e) {
         let file = e.target.files[0];
 
         let formData = new FormData();
 
         formData.append('uploads', file);
+
+
 
 
 
@@ -75,13 +81,31 @@ class Create extends Component {
                         <div >
                             <form>
                                 <div className="d-flex">
-                                <div className="form-group">
-                                     <input onChange={(e) => this.handlechange(e)} id="name"  name="name" type="text" /><br/><br/>
-                                    <label className="form-label">select file</label><br/><br/>
+                                    <div className="form-group">
+                                        <input onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" /><br /><br />
+                                        <label className="form-label">select file</label><br /><br />
+                                        {
+                                            this.state.count.map((item, index) => {
+                                                return (
 
-                                    <input  type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
-                                </div>
-                                <button onClick={() => this.addmore()} type="button" class="btn">+</button>
+                                                    <div key={index}>
+                                                        <input type="file" multiple name="file[]"  onChange={(e) => this.handlefile(e)} className="from-control" />
+
+                                                    </div>
+                                                )
+
+
+                                            })
+
+
+
+
+                                            // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
+
+                                        }
+                                    </div>
+
+                                    <button onClick={(e) => this.addMore(e)} type="button" class="btn">+</button>
                                 </div>
                                 <button onClick={(e) => this.handleclick(e)} type="button" className="btn">uploads</button>
                             </form>
