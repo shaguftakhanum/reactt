@@ -5,12 +5,14 @@ import Post from "../pages/Post";
 import Tag from "../pages/Tag";
 import Page from '../pages/Page';
 import Create from '../pages/Create';
+import Edit from '../pages/Edit';
 const AllRoutes = () => {
   return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Blog />}/>
-				<Route path="/blog/create" element={<Create/>}></Route>
+				<Route path="/blog/create" element={<Create/>}/>
+				<Route path="/blogs/:id" element={<Edit/>} />
 				<Route path="/post" element={<Post />} />
 				<Route path="/tag" element={<Tag />}/>
 				<Route path="/tag/page1" element={<Page />} />
@@ -22,3 +24,4 @@ const AllRoutes = () => {
 
 export default AllRoutes
 
+//

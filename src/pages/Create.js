@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from "../components/Layout/Layout";
 class Create extends Component {
     constructor(props) {
@@ -66,6 +69,7 @@ class Create extends Component {
         })
             .then(({ data }) => {
                 console.log('data =>', data);
+                // toast("data savved successfully")
             })
             .catch(function (error) {
                 console.log("error=>", error);
@@ -76,20 +80,23 @@ class Create extends Component {
         return (
             <>
                 <Layout>
-                    <div className="Create">
+
                         <h1>Form</h1>
-                        <div >
+
                             <form>
-                                <div className="d-flex">
+
                                     <div className="form-group">
-                                        <input onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" /><br /><br />
-                                        <label className="form-label">select file</label><br /><br />
+                                    <label for="name">Name</label>
+                                        <input onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" />
+                                        </div>
+                                        <div className="form-group">
+                                        <label className="form-label">select file</label>
                                         {
                                             this.state.count.map((item, index) => {
                                                 return (
 
                                                     <div key={index}>
-                                                        <input type="file" multiple name="file[]"  onChange={(e) => this.handlefile(e)} className="from-control" />
+                                                        <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
                                                     </div>
                                                 )
@@ -103,14 +110,16 @@ class Create extends Component {
                                             // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
                                         }
-                                    </div>
+                                        </div>
+
 
                                     <button onClick={(e) => this.addMore(e)} type="button" class="btn">+</button>
-                                </div>
-                                <button onClick={(e) => this.handleclick(e)} type="button" className="btn">uploads</button>
+
+                                <button onClick={(e) => this.handleclick(e)} type="button" className="btn btn-default">uploads</button>
+                                {/* <ToastContainer /> */}
                             </form>
-                        </div>
-                    </div>
+
+
                 </Layout>
 
             </>

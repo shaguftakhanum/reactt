@@ -27,8 +27,6 @@ const Tag=()=>{
 							<tr>
 								<th>Id</th>
 								<th>Name</th>
-								<th>Type</th>
-								<th>Type_Id</th>
 								<th>CreatedAt</th>
 								<th>UpdatedAt</th>
 								<th>Actions</th>
@@ -44,8 +42,6 @@ const Tag=()=>{
 									<tr>
 										<td>{item.id}</td>
 										<td>{item.name}</td>
-										<td>{item.type}</td>
-										<td>{item.type}</td>
 										<td>{item.createdAt}</td>
 										<td>{item.updatedAt}</td>
 										<td>

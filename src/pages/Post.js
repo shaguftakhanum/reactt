@@ -27,8 +27,6 @@ const Post=()=>{
 							<tr>
 								<th>Id</th>
 								<th>Name</th>
-								<th>Type</th>
-								<th>Type_id</th>
 								<th>CreatedAt</th>
 								<th>UpdatedAt</th>
 								<th>Actions</th>
@@ -44,8 +42,7 @@ const Post=()=>{
 									<tr>
 										<td>{item.id}</td>
 										<td>{item.name}</td>
-										<td>{item.type}</td>
-										<td>{item.type_id}</td>
+
 										<td>{item.createdAt}</td>
 										<td>{item.updatedAt}</td>
 										<td>
