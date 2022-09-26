@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,11 +39,6 @@ class Create extends Component {
         let formData = new FormData();
 
         formData.append('uploads', file);
-
-
-
-
-
         axios({
             method: 'post',
             url: 'http://localhost:8000/uploads',
@@ -81,45 +79,36 @@ class Create extends Component {
             <>
                 <Layout>
 
+
                         <h1>Form</h1>
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>select file</Form.Label>
+                                {
+                                    this.state.count.map((item, index) => {
+                                        return (
 
-                            <form>
+                                            <div key={index}>
+                                                <Form.Control type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
-                                    <div className="form-group">
-                                    <label for="name">Name</label>
-                                        <input onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" />
-                                        </div>
-                                        <div className="form-group">
-                                        <label className="form-label">select file</label>
-                                        {
-                                            this.state.count.map((item, index) => {
-                                                return (
+                                            </div>
+                                        )
+                                    })
+                                    // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
-                                                    <div key={index}>
-                                                        <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
+                                }
+                            </Form.Group>
 
-                                                    </div>
-                                                )
+                            <div className="d-grid gap-2">
+                                <Button variant="primary" size="lg" onClick={(e) => this.addMore(e)} type="submit" >+</Button>
 
-
-                                            })
-
-
-
-
-                                            // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
-
-                                        }
-                                        </div>
-
-
-                                    <button onClick={(e) => this.addMore(e)} type="button" class="btn">+</button>
-
-                                <button onClick={(e) => this.handleclick(e)} type="button" className="btn btn-default">uploads</button>
-                                {/* <ToastContainer /> */}
-                            </form>
-
-
+                                <Button variant="primary" size="lg" onClick={(e) => this.handleclick(e)} type="submit">uploads</Button>
+                            </div>
+ </Form>
                 </Layout>
 
             </>

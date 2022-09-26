@@ -5,27 +5,46 @@ import Layout from "../components/Layout/Layout";
 import 'bootstrap/dist/css/bootstrap.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
-// import {withRouter} from 'react-router'
-const Edit = () => {
+const PostEdit = () => {
     const params = useParams();
     console.log('params =>', params);
     const [name, setName] = useState('')
+    const [blogId, setBlogId] = useState();
     const [images, setImages] = useState([])
+    const [item, setitem] = useState([]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://localhost:8000/api/post/' + params.id,
+        })
+            .then(({ data }) => {
+                const files = data.data.files.map((file) => file.name);
+                console.log('post data =>', data.data.posts.blog_id);
+                setName(data.data.posts.name);
+                // setBlogId(data.data.posts.blog_id);
+                // blog_id = data.data.posts.blog_id;
+                setBlogId(data.data.posts.blog_id)
+                // console.log("blog Id ===> ", blog_id);
+                setImages(files);
+            }).then(res => {
+                axios.get(`http://localhost:8000/api/blogs/getall`)
+                    .then(res => {
+                        // console.log('res =>',res);
+                        console.log('data =>', res.data.data)
+                        setitem(res.data.data);
+                    })
+            })
+            .catch(function (error) {
+                console.log("error=>", error);
+            });
+
+    },
+        []);
     const handlenamechange = (e) => {
         // console.log(e.target.value)
         setName(e.target.value);
-        // let name = e.target.value;
-        // setName({
-        //         name,
-        //         name: name
-        //     });
-
     }
-    // const fileChangedHandler = (e) => {
-    //     const updatedImages = [...images, e.target.files[0]];
-    //     setImages(updatedImages);
-    // }
     const handlefile = (e) => {
         // let file = e.target.value[0];
         let file = e.target.files[0];
@@ -57,10 +76,11 @@ const Edit = () => {
         console.log("e ===> ", e);
         axios({
             method: 'put',
-            url: 'http://localhost:8000/api/blogs/' + params.id,
+            url: 'http://localhost:8000/api/post/' + params.id,
             data: {
                 name: name,
-                files: images
+                files: images,
+                blogid:blogId
             }
         })
             .then((res) => {
@@ -71,34 +91,34 @@ const Edit = () => {
             .catch(function (error) {
                 console.log("error=>", error);
             });
+
+
     }
 
-    //component did mount
-    useEffect(() => {
-        // console.log(image);
-        axios({
-            method: 'get',
-            url: 'http://localhost:8000/api/blogs/' + params.id,
-        })
-            .then(({ data }) => {
-                const files = data.data.files.map((file) => file.name);
-                // console.log('data =>', data);
-                setName(data.data.blog.name);
-                setImages(files);
-            })
-            .catch(function (error) {
-                console.log("error=>", error);
-            });
-    }, []);
 
-    return <>
-        <Layout>
-        <h4>Form</h4>
-        <br />
+    return (
+        <>
+            <Layout>
+                <br />
                 <form >
                     <label>Name</label>
                     <input className="form-control" type="text" value={name} name="name" onChange={(e) => handlenamechange(e)} /><br />
+                    <label>selected Blog</label><br />
+                    <select value={blogId} className="form-control"  ><br /><br />
+                        {
+                            item.map((items) => {
+                            const selected=    items.id==blogId?"selected":null
 
+                                return (
+                                    <option  key={items.id} value={items.id}>{items.name}</option>
+
+                                )
+                            })
+
+                        }
+
+                    </select>
+                    <br /><br />
                     < input className="form-control"  type="file" onChange={(e) => handlefile(e)} >
                     {/* {
                                 images.map((image) =>
@@ -109,8 +129,9 @@ const Edit = () => {
                     <br /><br />
                     <Button onClick={(e) => handleclick(e)} type="button" className="btn">update</Button>
                 </form>
-
-        </Layout>
-    </>
+            </Layout>
+        </>
+    )
 }
-export default (Edit);
+
+export default PostEdit

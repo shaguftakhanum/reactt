@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // import { withRouter } from "react-router";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Button } from "react-bootstrap";
 
 const Blog = () => {
 
@@ -33,7 +34,6 @@ const Blog = () => {
 		const blogs = res.data;
 		console.log("blogs=>",blogs)
 		// setitem({ blogs });
-
 
 		// alert("are u sure you want to delete data")
 
@@ -70,13 +70,16 @@ const Blog = () => {
 	return (
 		<>
 			<Layout>
+				<br/>
+
+				{/* <Link to="/blog/edit" element="<Create/>" >
+					<h1>edit request</h1>
+				</Link> */}
 				<Link to="/blog/create" element="<Create/>" >
-					<h1>post request</h1>
+					<Button variant="success">Add </Button>
 					<ToastContainer />
 				</Link>
-				<Link to="/blog/edit" element="<Create/>" >
-					<h1>edit request</h1>
-				</Link>
+				<br/>
 
 				<table className="table table-striped">
 					<thead>
@@ -98,17 +101,19 @@ const Blog = () => {
 									<td>{item.createdAt}</td>
 									<td>{item.updatedAt}</td>
 									<td>
-										<Link  to={"/blogs/" + item.id}>Edit</Link>
+										<Link  to={"/blogs/" + item.id}><Button type="button"  variant="warning">Edit</Button></Link>
+
 
 										{/* <a href={"/blogs/"+item.id}><button type="button"  className="btn btn-success">Edit<i className="fas fa-edit"></i></button></a> */}
-										<button type="button" onClick={() => handledelete(item.id)} className="btn btn-danger">Delete<i className="far fa-trash-alt"></i>
-										</button>
+										<Button type="button" onClick={() => handledelete(item.id)} variant="danger">Delete</Button>
+
 										</td>
 								</tr>
 							))
 						}
 					</tbody>
 				</table>
+
 
 
 			</Layout>
