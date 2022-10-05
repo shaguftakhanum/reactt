@@ -24,7 +24,6 @@ class Create extends Component {
         this.setState({
             count: [...this.state.count, '1']
         })
-
     }
     handlechange = (e) => {
         let name = e.target.value;
@@ -50,8 +49,6 @@ class Create extends Component {
                 this.setState({
                     ...this.state,
                     images: [...this.state.images, ...data.paths],
-
-
                 })
                 // console.log('data =>' , data);
             })
@@ -80,35 +77,53 @@ class Create extends Component {
                 <Layout>
 
 
-                        <h1>Form</h1>
-                        <Form>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>select file</Form.Label>
-                                {
-                                    this.state.count.map((item, index) => {
-                                        return (
+                    <h1>Form</h1>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control onChange={(e) => this.handlechange(e)} id="name" name="name" type="text" />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>select file</Form.Label>
+                            {
+                                this.state.count.map((item, index) => {
+                                    return (
 
-                                            <div key={index}>
-                                                <Form.Control type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
+                                        <div key={index}>
+                                            <Form.Control type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
-                                            </div>
-                                        )
-                                    })
-                                    // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
+                                        </div>
+                                    )
+                                })
+                                // <input type="file" multiple name="file[]" onChange={(e) => this.handlefile(e)} className="from-control" />
 
-                                }
-                            </Form.Group>
+                            }
+                        </Form.Group>
 
-                            <div className="d-grid gap-2">
-                                <Button variant="primary" size="lg" onClick={(e) => this.addMore(e)} type="submit" >+</Button>
+                        <div >
+                            <Button style={{
+                                width: "100px",
+                                // marginLeft: "40px",
+                                float: "inherit",
+                                whitespace: "nowrap",
+                                height: "40px",
+                                cursor: "pointer",
+                                margin: "2px",
+                                marginbottom: "5px"
+                            }} variant="primary" size="lg" onClick={(e) => this.addMore(e)} type="submit" >+</Button>
 
-                                <Button variant="primary" size="lg" onClick={(e) => this.handleclick(e)} type="submit">uploads</Button>
-                            </div>
- </Form>
+                            <Button style={{
+                                width: "100px",
+                                // marginLeft: "40px",
+                                float: "inherit",
+                                whitespace: "nowrap",
+                                height: "40px",
+                                cursor: "pointer",
+                                margin: "2px",
+                                marginbottom: "5px"
+                            }} variant="primary" size="lg" onClick={(e) => this.handleclick(e)} type="submit">uploads</Button>
+                        </div>
+                    </Form>
                 </Layout>
 
             </>

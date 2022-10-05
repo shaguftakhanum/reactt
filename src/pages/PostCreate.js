@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 const PostCreate = () => {
-    let [item, setItems] = useState([]);
-    let [uploads, setUploads] = useState([]);
+    const [item, setItems] = useState([]);
+    const [uploads, setUploads] = useState([]);
     // let[posts,setPost]=useState([]);
     const [name1, setName] = useState('')
     // const [images, setImages] = useState([])
@@ -66,7 +66,7 @@ const PostCreate = () => {
             data: {
                 name: name1,
                 blog_id: blog.blog_id,
-                files:uploads
+                images:uploads
             }
         })
             .then(( data ) => {
@@ -100,7 +100,6 @@ const PostCreate = () => {
                 setCount(
                  [...count, '1']
                 )
-
             }
 
 
@@ -125,17 +124,40 @@ const PostCreate = () => {
                     </div>
                     <Form.Group className="mb-3">
                         <Form.Label>File</Form.Label>
-                        {/* {
-                            count.map((index)=>{
-                                <div key={index}> */}
-                        <Form.Control onChange={(e) => handlefile(e)} id="file" multiple name="file[]" type="file" />
-                        {/* </div>
-                            }) */}
-{/* } */}
+                            {
+                                    count.map((item, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <Form.Control type="file" multiple name="file[]" onChange={(e) =>handlefile(e)} className="from-control" />
+
+                                            </div>
+                                        )
+                                    })
+
+                                }
+
                     </Form.Group>
-                    <div className="d-grid gap-2">
-                    <Button variant="primary" size="lg" onClick={(e) =>addMore(e)} type="button" >+</Button>
-                        <Button variant="primary" size="lg" onClick={(e) => handleclick(e)} type="button">Post</Button>
+                    <div >
+                    <Button style={{
+                            width: "100px",
+                            // marginLeft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} variant="primary" size="lg" onClick={(e) =>addMore(e)} type="button" >+</Button>
+                        <Button style={{
+                            width: "100px",
+                            // marginLeft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} variant="primary" size="lg" onClick={(e) => handleclick(e)} type="button">Post</Button>
                     </div>
                 </Form>
             </Layout>

@@ -10,6 +10,7 @@ import Edit from '../pages/Edit';
 // import More from '../pages/More';
 import PostCreate from '../pages/PostCreate';
 import PostEdit from '../pages/PostEdit';
+import TagCreate from '../pages/TagCreate';
 const AllRoutes = () => {
   return (
 		<BrowserRouter>
@@ -20,6 +21,7 @@ const AllRoutes = () => {
 				<Route path="/post" element={<Post />} />
 				<Route path="/post/create" element={<PostCreate/>}/>
 				<Route path="/tag" element={<Tag />}/>
+				<Route path="/tag/create" element={<TagCreate/>}/>
 				<Route path="/tag/page1" element={<Page />} />
 				<Route path="/posts/:id" element={<PostEdit/>} />
 			</Routes>

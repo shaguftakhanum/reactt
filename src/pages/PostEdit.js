@@ -10,9 +10,10 @@ const PostEdit = () => {
     console.log('params =>', params);
     const [name, setName] = useState('')
     const [blogId, setBlogId] = useState();
-    const [images, setImages] = useState([])
+    const [oldImages, setOldImages] = useState([])
+    const [newImages, setNewImages] = useState([])
     const [item, setitem] = useState([]);
-
+    const [count, setCount] = useState([1])
     useEffect(() => {
         axios({
             method: 'get',
@@ -26,7 +27,7 @@ const PostEdit = () => {
                 // blog_id = data.data.posts.blog_id;
                 setBlogId(data.data.posts.blog_id)
                 // console.log("blog Id ===> ", blog_id);
-                setImages(files);
+                setOldImages(files);
             }).then(res => {
                 axios.get(`http://localhost:8000/api/blogs/getall`)
                     .then(res => {
@@ -62,8 +63,8 @@ const PostEdit = () => {
         })
             .then(({ data }) => {
                 // console.log('data =>', data);
-                setImages(
-                    [...images, ...data.paths]
+                setNewImages(
+                    [...newImages, ...data.paths]
 
                 )
                 // console.log('data =>' , data);
@@ -73,14 +74,13 @@ const PostEdit = () => {
             });
     }
     const handleclick = (e) => {
-        console.log("e ===> ", e);
         axios({
             method: 'put',
             url: 'http://localhost:8000/api/post/' + params.id,
             data: {
                 name: name,
-                files: images,
-                blogid:blogId
+                newFiles: newImages,
+                blogid: blogId
             }
         })
             .then((res) => {
@@ -93,6 +93,12 @@ const PostEdit = () => {
             });
 
 
+    }
+    const addMore = (e) => {
+        e.preventDefault();
+        setCount(
+            [...count, '1']
+        )
     }
 
 
@@ -107,10 +113,10 @@ const PostEdit = () => {
                     <select value={blogId} className="form-control"  ><br /><br />
                         {
                             item.map((items) => {
-                            const selected=    items.id==blogId?"selected":null
+                                const selected = items.id == blogId ? "selected" : null
 
                                 return (
-                                    <option  key={items.id} value={items.id}>{items.name}</option>
+                                    <option key={items.id} value={items.id}>{items.name}</option>
 
                                 )
                             })
@@ -119,16 +125,53 @@ const PostEdit = () => {
 
                     </select>
                     <br /><br />
-                    < input className="form-control"  type="file" onChange={(e) => handlefile(e)} >
-                    {/* {
-                                images.map((image) =>
-                                <input  img src={`http://${image}`} alt="not selected yet" value={`http://${image}`} />
-                                )
-                            } */}
-                    </input>
+
+                    {
+                        count.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <input className="form-control" type="file" multiple name="file[]" onChange={(e) => handlefile(e)} />
+
+                                </div>
+                            )
+                        })
+
+                    }
+                    <br />
+                    {
+                        oldImages.map((image) =>
+                            <input className="form-control" img src={`${image}`} alt="not selected yet" value={`${image}`} />
+                        )
+                    }
                     <br /><br />
-                    <Button onClick={(e) => handleclick(e)} type="button" className="btn">update</Button>
+
+
+
+                    <div class="bd-exemple">
+                        <Button style={{
+                            width: "100px",
+                            // marginLeft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} variant="primary" size="lg" onClick={(e) => addMore(e)} type="button" >+</Button>
+                        <Button style={{
+                            width: "100px",
+                            // marginleft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} variant="primary" size="lg" onClick={(e) => handleclick(e)} type="button">update</Button>
+                    </div>
+
                 </form>
+                <br /><br />
             </Layout>
         </>
     )

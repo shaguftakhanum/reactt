@@ -2,6 +2,8 @@ import React from "react";
 import {useEffect,useState} from "react";
 import axios from "axios";
 import Layout from "../components/Layout/Layout";
+import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 const Tag=()=>{
     let[items,setitem]=useState([])
     useEffect(() => {
@@ -20,6 +22,14 @@ const Tag=()=>{
     return(
         <>
     <Layout>
+		<br/>
+		<div>
+	<Link to="/tag/create" element="<TagCreate/>" >
+					<Button className="float-right" variant="success">Add </Button>
+
+				</Link>
+				</div>
+				<br/><br/><br/>
 
 
 					 <table className="table table-striped">

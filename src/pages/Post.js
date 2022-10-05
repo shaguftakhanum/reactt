@@ -61,10 +61,13 @@ const Post=()=>{
     return(
         <>
     <Layout>
+		<br/>
+		<div>
 	<Link to="/post/create" element="<PostCreate/>" >
-					<Button variant="success">Add </Button>
+					<Button className="float-right" variant="success">Add </Button>
 				</Link>
-				<br/><br/>
+				</div>
+				<br/><br/><br/>
 					 <table className="table table-striped">
 						<thead>
 							<tr>

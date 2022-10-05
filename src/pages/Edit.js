@@ -12,6 +12,8 @@ const Edit = () => {
     console.log('params =>', params);
     const [name, setName] = useState('')
     const [images, setImages] = useState([])
+    const [oldImages, setOldImages] = useState([])
+    const [count, setCount] = useState([1])
     const handlenamechange = (e) => {
         // console.log(e.target.value)
         setName(e.target.value);
@@ -22,10 +24,6 @@ const Edit = () => {
         //     });
 
     }
-    // const fileChangedHandler = (e) => {
-    //     const updatedImages = [...images, e.target.files[0]];
-    //     setImages(updatedImages);
-    // }
     const handlefile = (e) => {
         // let file = e.target.value[0];
         let file = e.target.files[0];
@@ -84,12 +82,20 @@ const Edit = () => {
                 const files = data.data.files.map((file) => file.name);
                 // console.log('data =>', data);
                 setName(data.data.blog.name);
-                setImages(files);
+                // setImages(files);
+                setOldImages(files);
             })
             .catch(function (error) {
                 console.log("error=>", error);
             });
     }, []);
+
+    const addMore = (e) => {
+        e.preventDefault();
+        setCount(
+         [...count, '1']
+        )
+    }
 
     return <>
         <Layout>
@@ -98,18 +104,45 @@ const Edit = () => {
                 <form >
                     <label>Name</label>
                     <input className="form-control" type="text" value={name} name="name" onChange={(e) => handlenamechange(e)} /><br />
+                    {
+                        count.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <input className="form-control" type="file" multiple name="file[]" onChange={(e) => handlefile(e)} />
 
-                    < input className="form-control"  type="file" onChange={(e) => handlefile(e)} >
-                    {/* {
-                                images.map((image) =>
-                                <input  img src={`http://${image}`} alt="not selected yet" value={`http://${image}`} />
+                                </div>
+                            )
+                        })
+
+                    }
+                    <br/>
+                    {
+                                oldImages.map((image) =>
+                                <img src={`${oldImages}`} alt="not selected yet" value={`${image}`} />
                                 )
-                            } */}
-                    </input>
+                    }
                     <br /><br />
-                    <Button onClick={(e) => handleclick(e)} type="button" className="btn">update</Button>
+                    <Button style={{
+                            width: "100px",
+                            // marginLeft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} variant="primary" size="lg" onClick={(e) => addMore(e)} type="button" >+</Button>
+                    <Button style={{
+                            width: "100px",
+                            // marginLeft: "40px",
+                            float: "inherit",
+                            whitespace: "nowrap",
+                            height: "40px",
+                            cursor: "pointer",
+                            margin: "2px",
+                            marginbottom: "5px"
+                        }} onClick={(e) => handleclick(e)} type="button" >update</Button>
                 </form>
-
         </Layout>
     </>
 }
